@@ -1,0 +1,36 @@
+{% extends 'course_feedback/base.html' %}
+
+{% block content %}
+
+<table style="border:2px solid blue; border-collapse: collapse; width:80%;">
+<tr>
+    <th style="border:1px solid black; padding:10px;text-align: center;">Course</th>
+    <th style="border:1px solid black; padding:10px;text-align: center;">Teacher</th>
+    <th style="border:1px solid black; padding:10px;text-align: center;">Students Enrolled</th>
+    <th style="border:1px solid black; padding:10px;text-align: center;">Marks Leniency</th>
+    <th style="border:1px solid black; padding:10px;text-align: center;">Attendence Leniency</th>
+    <th style="border:1px solid black; padding:10px;text-align: center;">Teaching Style</th>
+    <th style="border:1px solid black; padding:10px;text-align: center;">Course Relevance</th>
+    <th style="border:1px solid black; padding:10px;text-align: center;">Course Workload</th>
+    
+</tr>
+
+{% for course in courses %}
+    <div>
+        <tr height="100">
+        <td  style="border:1px solid black; padding:10px;text-align: center;"><a href="{% url 'show_review' pk=course.pk %}">{{ course.name}}</a></td>
+        <td  style="border:1px solid black; padding:10px;text-align: center;"> {{course.teacher}}</td>
+        <td  style="border:1px solid black; padding:10px;text-align: center;"> {{course.count}}</td>
+        <td  style="border:1px solid black; padding:10px;text-align: center;"> {{course.marks}}</td>
+        <td  style="border:1px solid black; padding:10px;text-align: center;"> {{course.attendance}}</td>
+        <td  style="border:1px solid black; padding:10px;text-align: center;"> {{course.style}}</td>
+        <td  style="border:1px solid black; padding:10px;text-align: center;"> {{course.relevance}} </td>
+        <td  style="border:1px solid black; padding:10px;text-align: center;"> {{course.workload}} </td>
+        </tr>
+        
+    </div>
+    
+{% endfor %}
+</table>
+
+{% endblock %}

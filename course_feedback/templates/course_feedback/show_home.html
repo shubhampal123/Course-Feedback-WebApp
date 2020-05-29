@@ -1,0 +1,28 @@
+{% extends 'course_feedback/base.html' %}
+
+{% block content %}
+
+        {% if user.is_authenticated %}
+        <div >
+            <p></p>
+            <h2><a href="{% url 'give_feedback' %}">Feedback Form</a></h2>
+            
+        </div>
+
+        <div >
+            <p></p>
+            <h2><a href="{% url 'sort_courses' %}">Browse Courses</a></h2>
+            
+        </div>
+
+        <div >
+            <p></p>
+            <h2><a href="{% url 'get_feedback' %}">Get Feedback</a></h2>
+            
+        </div>
+        {% endif %}
+
+
+
+
+{% endblock %}

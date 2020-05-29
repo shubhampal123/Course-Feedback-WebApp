@@ -1,0 +1,25 @@
+{% extends 'course_feedback/base.html' %}
+
+{% block content %}
+<div>
+    <p><span><strong>Course</strong> : {{ course.name }}</span></p>
+    <p><span><strong>Teacher </strong>: {{course.teacher}}</span></p>
+    <p><span><strong>Students Enrolled  </strong>: {{course.count}}</span></p>
+    <h2>Course Ratings On The Basis Of:</h2>
+    <h4>(0 : very poor , 10 : excellent)</h4>
+    <br>
+    <p><span><strong>Course Relevance</strong> : {{course.relevance}}</span></p>
+    <p><span><strong>Course Workload</strong>: {{course.workload}}</span></p>
+    <p><span><strong>Teaching Style</strong> : {{course.style}}</span></p>
+    <p><span><strong>Marks Leniency</strong> : {{course.marks}}</span></p>
+    <p><span><strong>Attendance Leniency</strong> : {{course.attendance}}</span></p>
+  
+    
+</div>
+<br>
+<br>
+    <h2><p><span><strong>Reviews</strong></span></p></h2>
+<br>
+<br>
+
+{% endblock %}

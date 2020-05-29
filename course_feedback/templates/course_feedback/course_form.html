@@ -1,0 +1,26 @@
+{% extends 'course_feedback/base.html' %}
+
+{% block content %}
+    <h1>Sort Courses</h1>
+    <form method="POST" >{% csrf_token %}
+        <h3>Choose Course Name :{{ form.name }}</h3>
+        <br>
+        <h3>Choose Teacher Name :{{ form.teacher }}</h3>
+        <br>
+        <h2>Select Preferences:</h2>
+        <br>
+        <h3>Course Popularity :{{ form.count }}</h3>
+        <br>
+        <h3>Course Relevance :{{ form.relevance }}</h3>
+        <br>
+        <h3>Teaching Style :{{ form.style }}</h3>
+        <br>
+        <h3>Leniency On Marks :{{ form.marks }}</h3>
+        <br>
+        <h3>Leniency On Attendance :{{ form.attendance }}</h3>
+        <br>
+        <h3>Course Workload :{{ form.workload }}</h3>
+        <br>
+        <button type="submit" class="save btn btn-default">Sort</button>
+    </form>
+{% endblock %}

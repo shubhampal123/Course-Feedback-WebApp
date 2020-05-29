@@ -1,0 +1,20 @@
+{% extends 'course_feedback/base.html' %}
+
+{% block content %}
+    <h1>Sign Up</h1>
+    <br>
+    <form method="POST" >{% csrf_token %}
+        <h3>User Name :{{ form.username }}</h3>
+            (This Value May Contain Only Letters, Numbers, And @/./+/-/_ Characters.)
+        <br>
+        <h3>Email : {{ form.email }}</h2>
+            (Use Nsit Email id)
+        <br>
+        <h3>Password : {{ form.password1 }}</h2>
+            (Must Contain At Least 8 Characters)
+        <br>
+        <h3>Confirm Password : {{ form.password2 }}</h2>
+        
+        <button type="submit" class="save btn btn-default">Sign up</button>
+    </form>
+{% endblock %}
