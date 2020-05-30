@@ -84,7 +84,7 @@ DATABASES = {
 EMAIL_USE_TLS=True
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_HOST_USER='course.feedback.web.app@gmail.com'
-EMAIL_HOST_PASSWORD='admin@123ROXX'
+EMAIL_HOST_PASSWORD='***************'
 EMAIL_PORT=587
 
 
