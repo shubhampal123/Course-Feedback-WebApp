@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import login,authenticate
 from django.contrib.sites.shortcuts import get_current_site
@@ -32,15 +32,16 @@ def activate(request,uidb64,token):
 def signup(request):
     if request.method=='POST':
         form=SignupForm(request.POST)
-        #print(form.cleaned_data['email'])
+        cnt=User.objects.filter(email=form.data['email'])
+        if(len(cnt)!=0):
+            return HttpResponse('Email id already registered')
     
         if form.is_valid():
             user=form.save(commit=False)
             user.is_active=False
             user.save() 
-
             # email confirmation 
-            print('inside')
+            
             mail_subject='Activate Course Feedback Web App account.'
             current_site=get_current_site(request)
             message=render_to_string('course_feedback/acc_active_email.html',{
@@ -154,6 +155,10 @@ def sort_courses(request):
 def give_feedback(request):
     if request.method == 'POST':
         form=FeedbackForm(request.POST)
+        cnt=Feedback.objects.filter(course=form.data['course']).filter(user=request.user.username)
+        if(len(cnt)!=0):
+            return HttpResponse('Feedback form can be filled only once  :) ')
+
         if form.is_valid():
             feedback=form.save(commit=False)
             feedback_course=str(feedback.course).split()
@@ -188,6 +193,7 @@ def give_feedback(request):
             Course.objects.filter(pk=pk).update(attendance=new_attendance)
             Course.objects.filter(pk=pk).update(workload=new_workload) 
 
+            feedback.user=request.user.username
             feedback.save()
  
             return redirect('/')
@@ -203,3 +209,20 @@ def give_feedback(request):
 
 def home(request):
     return render(request,'course_feedback/show_home.html',{})
+
+def add_review(request,pk):
+    course=get_object_or_404(Course,pk=pk)
+    if request.method == "POST":
+        form=ReviewForm(request.POST)
+        if form.is_valid():
+            review=form.save(commit=False)
+            review.course=course
+            review.user=request.user.username
+            print(review.user)
+            review.save()
+            return redirect('show_review',pk=course.pk)
+        else:
+            return  HttpResponse('Invalid Response')
+    else:
+        form=ReviewForm()
+        return render(request,'course_feedback/add_review.html',{'form':form})

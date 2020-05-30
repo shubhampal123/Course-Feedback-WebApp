@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 rating=(
@@ -41,7 +42,18 @@ class Feedback(models.Model):
         return str(self.user)+" ( "+str(self.course)+" ) "
 
 
+class Reviews(models.Model):
+     course= models.ForeignKey('course_feedback.Course', on_delete=models.CASCADE, related_name='reviews')
+     user=models.CharField(max_length=200)
+     text=models.TextField()
+     date=models.DateTimeField(default=timezone.now)
 
+     def __str__(self):
+         return self.text
+
+
+
+    
 
     
 

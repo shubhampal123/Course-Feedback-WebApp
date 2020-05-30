@@ -108,6 +108,13 @@ class CourseForm(forms.Form):
 class ShowFeedbackForm(forms.Form):
     name=forms.ChoiceField(widget=forms.Select,choices=get_course_choices())
 
+class ReviewForm(forms.ModelForm):
+
+    class Meta:
+        model=Reviews
+
+        fields=('text',)
+
 
     
  

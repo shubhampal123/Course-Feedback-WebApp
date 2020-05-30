@@ -19,6 +19,17 @@
 <br>
 <br>
     <h2><p><span><strong>Reviews</strong></span></p></h2>
+    <a class="btn btn-default" href="{% url 'add_review' pk=course.pk %}">Add Review</a>
+    {% for review in course.reviews.all %}
+    <div class="review">
+        <div class="date">{{ review.date }}</div>
+        <strong>{{ review.user }}</strong>
+        <p>{{ review.text|linebreaks }}</p>
+    </div>
+    {% empty %}
+    <p>No reviews here yet :(</p>
+    {% endfor %}
+
 <br>
 <br>
 
